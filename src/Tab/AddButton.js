@@ -10,8 +10,8 @@ Ext.define('Cntysoft.SenchaExt.Tab.AddButton', {
    alias : 'widget.tabaddbutton',
    cls : 'cnty-tab-add-button',
    overCls : 'cnty-tab-add-button-over',
-   width : 16,
-   height : 16,
+   width : 32,
+   height : 32,
    margin : 4,
    /**
     * @property {Ext.tab.Panel} tabPanel
