@@ -8,7 +8,7 @@
 /**
  * 加上一些额外的上传字段, 暂时不进行字符型的字段存在性检查
  */
-Ext.define('Cntysoft.SenchaExt.Data.TreeStore', {
+Ext.define('SenchaExt.Data.TreeStore', {
    extend : 'Ext.data.TreeStore',
    alias : 'store.cntytreestore',
    extraParams : [],

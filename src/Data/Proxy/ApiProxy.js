@@ -8,7 +8,7 @@
 /**
  * WebOs平台数据调用代理，广泛运用在Grid 和 Tree 组建中， 底层使用WebOs数据网关跟后端系统通信
  */
-Ext.define('Cntysoft.SenchaExt.Data.Proxy.ApiProxy', {
+Ext.define('SenchaExt.Data.Proxy.ApiProxy', {
    extend : 'Ext.data.proxy.Server',
    alias : 'proxy.apigateway',
    requires : [

@@ -20,7 +20,7 @@
  * @constructor
  * @param {Object} config
  */
-Ext.define('Cntysoft.SenchaExt.Tree.DisableNodePlugin', {
+Ext.define('SenchaExt.Tree.DisableNodePlugin', {
     alias : 'plugin.nodedisabled',
     extend : 'Ext.AbstractPlugin',
     //configurables

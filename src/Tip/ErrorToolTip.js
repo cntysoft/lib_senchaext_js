@@ -8,7 +8,7 @@
 /**
  * 出错错误提示
  */
-Ext.define('Cntysoft.SenchaExt.Tip.ErrorToolTip',{
+Ext.define('SenchaExt.Tip.ErrorToolTip',{
     extend : 'Ext.tip.ToolTip',
     alias : 'cmperrortooltip',
     style :  'border:red 1px solid;background:#ffffff',

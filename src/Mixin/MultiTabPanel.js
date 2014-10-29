@@ -5,9 +5,9 @@
  * copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
-Ext.define('Cntysoft.SenchaExt.Mixin.MultiTabPanel', {
+Ext.define('SenchaExt.Mixin.MultiTabPanel', {
    requires : [
-      'Cntysoft.SenchaExt.Tab.Panel'
+      'SenchaExt.Tab.Panel'
    ],
    /**
     * @property {Object} panelClsMap 多标签panel映射数据

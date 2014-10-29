@@ -5,11 +5,11 @@
  * copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
-Ext.define('Cntysoft.SenchaExt.Tab.Panel', {
+Ext.define('SenchaExt.Tab.Panel', {
     extend : 'Ext.tab.Panel',
     alias : 'widget.addbuttontabpanel',
     requires : [
-        'Cntysoft.SenchaExt.Tab.AddButton'
+        'SenchaExt.Tab.AddButton'
     ],
     tabPosition : 'bottom',
     border : false,

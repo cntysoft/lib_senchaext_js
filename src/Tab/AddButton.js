@@ -5,7 +5,7 @@
  * copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
-Ext.define('Cntysoft.SenchaExt.Tab.AddButton', {
+Ext.define('SenchaExt.Tab.AddButton', {
    extend : 'Ext.Component',
    alias : 'widget.tabaddbutton',
    cls : 'cnty-tab-add-button',
