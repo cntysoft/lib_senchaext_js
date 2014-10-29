@@ -1,2 +1,0 @@
-# sencha-ext - Read Me
-

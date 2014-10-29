@@ -1,0 +1,34 @@
+.sencha-ext-view-iconview-wrapper
+{
+  cursor: pointer;
+  text-align: center;
+  float : left;
+}
+
+.sencha-ext-view-iconview-icon
+{
+  background-color: transparent;
+  background-repeat: no-repeat;
+}
+.sencha-ext-view-iconview-icon-hover
+{
+  background:  url(image-path("View/icon-hover-bg", "png")) repeat;
+}
+
+.sencha-ext-view-iconview-text
+{
+  font: normal 12px tahoma,arial,verdana,sans-serif,宋体,微软雅黑;
+  text-decoration: none;
+  color:#ffffff;
+  text-align: center;
+  background : #8E8F8F;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  opacity : 0.4;
+  margin : 2px auto;
+  width: 96%;
+}
+.sencha-ext-view-iconview-wrapper.x-view-item-focused
+{
+  outline: none!important;
+}
