@@ -127,7 +127,7 @@ Ext.define('SenchaExt.Mixin.MultiTabPanel', {
       }
       cls = clsMap[type];
       Ext.apply(config, {
-         mainPanel : this,
+         mainPanelRef : this,
          closable : true
       });
       //Cntysoft.showLoadScriptMask();

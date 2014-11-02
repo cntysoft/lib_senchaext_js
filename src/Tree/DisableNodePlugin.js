@@ -28,7 +28,7 @@ Ext.define('SenchaExt.Tree.DisableNodePlugin', {
      * @cfg {String} disabledCls
      * The CSS class applied when the {@link Ext.data.Model} of the node has a 'disabled' field with a true value.
      */
-    disabledCls : 'cnty-tree-node-disabled',
+    disabledCls : 'sencha-ext-tree-node-disabled',
     /**
      * @cfg {Boolean} preventSelection
      * True to prevent selection of a node that is disabled. Default true.

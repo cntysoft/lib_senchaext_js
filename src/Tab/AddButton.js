@@ -8,11 +8,13 @@
 Ext.define('SenchaExt.Tab.AddButton', {
    extend : 'Ext.Component',
    alias : 'widget.tabaddbutton',
-   cls : 'cnty-tab-add-button',
-   overCls : 'cnty-tab-add-button-over',
-   width : 32,
-   height : 32,
-   margin : 4,
+   requires : [
+      'Ext.layout.container.Fit'
+   ],
+   mixins : {
+      langProvider : 'SenchaExt.Mixin.LangProvider'
+   },
+
    /**
     * @property {Ext.tab.Panel} tabPanel
     */
@@ -20,9 +22,18 @@ Ext.define('SenchaExt.Tab.AddButton', {
    LANG_TEXT : null,
    constructor : function(config)
    {
-      this.LANG_TEXT = Cntysoft.GET_COMP_LANG_TEXT('TAB.ADD_BUTTON');
+      this.mixins.langProvider.constructor.call(this);
+      Ext.applyIf(config,{
+         width : 32,
+         height : 32,
+         margin : 4,
+         cls : 'sencha-ext-tab-add-button',
+         overCls : 'sencha-ext-tab-add-button-over'
+      })
+      this.LANG_TEXT = this.GET_LANG_TEXT('VIEW.TAB.ADD_BUTTON');
       this.callParent([config]);
    },
+
    afterRender : function()
    {
       this.callParent();
@@ -57,6 +68,7 @@ Ext.define('SenchaExt.Tab.AddButton', {
       delete this.LANG_TEXT;
       this.callParent();
       var targetEl = this.getTargetEl();
+      this.mixins.langProvider.destroy.call(this);
       targetEl.removeListener('click', this.clickHandler, this);
    }
 });
