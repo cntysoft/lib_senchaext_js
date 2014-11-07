@@ -49,15 +49,15 @@ Ext.define('SenchaExt.Mixin.MultiTabPanel', {
     */
    renderPanel : function(panelType, config)
    {
-      var activeTab = this.tabPanel.getActiveTab();
+      var activeTab = this.tabPanelRef.getActiveTab();
       var pos;
       if(activeTab.panelType != panelType){
          //从这里导入的一定义修改模式
          this.getPanelObject(panelType, config, function(targetPanel){
-            pos = this.tabPanel.items.indexOf(activeTab);
-            this.tabPanel.remove(activeTab, true);
-            this.tabPanel.add(pos, targetPanel);
-            this.tabPanel.setActiveTab(targetPanel);
+            pos = this.tabPanelRef.items.indexOf(activeTab);
+            this.tabPanelRef.remove(activeTab, true);
+            this.tabPanelRef.add(pos, targetPanel);
+            this.tabPanelRef.setActiveTab(targetPanel);
          }, this);
       } else{
          //存在的时候调用一个处理函数
@@ -73,22 +73,22 @@ Ext.define('SenchaExt.Mixin.MultiTabPanel', {
    renderNewTabPanel : function(panelType, config)
    {
       this.getPanelObject(panelType, config, function(targetPanel){
-         this.tabPanel.add(targetPanel);
-         this.tabPanel.setActiveTab(targetPanel);
+         this.tabPanelRef.add(targetPanel);
+         this.tabPanelRef.setActiveTab(targetPanel);
       }, this);
    },
    /**
     * 初始化多标签的起始标签页， 看一般是绑定到afterrender事件
     *
-    * @param {Cntysoft.Kernel.CoreComp.Tab.Panel} tabPanel
+    * @param {Cntysoft.Kernel.CoreComp.Tab.Panel} tabPanelRef
     */
-   initStartupTab : function(tabPanel)
+   initStartupTab : function(tabPanelRef)
    {
       var initPanelConfig = this.getInitPanelConfig();
-      this.tabPanel = tabPanel;
+      this.tabPanelRef = tabPanelRef;
       this.getPanelObject(this.initPanelType, initPanelConfig, function(panel){
-         this.tabPanel.add(panel);
-         this.tabPanel.setActiveTab(0);
+         this.tabPanelRef.add(panel);
+         this.tabPanelRef.setActiveTab(0);
       }, this);
    },
    /**
@@ -145,8 +145,8 @@ Ext.define('SenchaExt.Mixin.MultiTabPanel', {
 
          listeners : {
             afterrender : this.initStartupTab,
-            beforetabclose : function(tabPanel, tab){
-               if(1 == tabPanel.items.getCount()){
+            beforetabclose : function(tabPanelRef, tab){
+               if(1 == tabPanelRef.items.getCount()){
                   //留住一个标签
                   return false;
                }
@@ -165,6 +165,6 @@ Ext.define('SenchaExt.Mixin.MultiTabPanel', {
 
    destroy : function()
    {
-      delete this.tabPanel;
+      delete this.tabPanelRef;
    }
 });
