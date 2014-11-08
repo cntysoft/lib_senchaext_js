@@ -127,7 +127,7 @@ Ext.define('SenchaExt.Data.Proxy.ApiProxy', {
          invokeParams[k] = v;
       });
       //invoke 参数优先级高
-      Ext.apply(invokeParams, this.getInvokeParams(), operation.params);
+      Ext.apply(invokeParams, this.getInvokeParams(), operation.getParams() ||{});
       Ext.apply(invokeParams, {
          start : operation.getStart(),
          limit : operation.getLimit()
