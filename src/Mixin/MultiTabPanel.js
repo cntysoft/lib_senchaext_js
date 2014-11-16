@@ -53,31 +53,15 @@ Ext.define('SenchaExt.Mixin.MultiTabPanel', {
    {
       var activeTab = this.tabPanelRef.getActiveTab();
       var pos;
-      if(activeTab.panelType != panelType){
+      if(activeTab.panelType != panelType) {
          //从这里导入的一定义修改模式
-         this.getPanelObject(panelType, config, function(targetPanel){
+         this.getPanelObject(panelType, config, function (targetPanel) {
             pos = this.tabPanelRef.items.indexOf(activeTab);
             this.tabPanelRef.remove(activeTab, true);
             this.tabPanelRef.add(pos, targetPanel);
             this.tabPanelRef.setActiveTab(targetPanel);
          }, this);
-      } else{
-         //存在的时候调用一个处理函数
-         this.panelExistHandler(activeTab, config);
       }
-   },
-   /**
-    * 渲染一个新的TAB标签面板
-    *
-    * @param {String} panelType 面板的种类
-    * @param {Object} config 面板的配置对象
-    */
-   renderNewTabPanel : function(panelType, config)
-   {
-      this.getPanelObject(panelType, config, function(targetPanel){
-         this.tabPanelRef.add(targetPanel);
-         this.tabPanelRef.setActiveTab(targetPanel);
-      }, this);
    },
    /**
     * 初始化多标签的起始标签页， 看一般是绑定到afterrender事件
