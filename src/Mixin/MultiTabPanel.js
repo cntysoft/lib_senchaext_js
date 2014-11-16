@@ -19,6 +19,8 @@ Ext.define('SenchaExt.Mixin.MultiTabPanel', {
     * @property {String} initPanelType
     */
    initPanelType : null,
+   //private
+   tabPanelRef : null,
    /**
     * 初始化参数
     *
