@@ -48,13 +48,6 @@ Ext.define('SenchaExt.Data.Proxy.ApiProxy', {
     */
    paramFields : [],
    /**
-    * @property {Object} reader
-    */
-   reader : {
-      type : 'json',
-      root : 'data'
-   },
-   /**
     * 原始数据
     *
     * @property {Object} rawData

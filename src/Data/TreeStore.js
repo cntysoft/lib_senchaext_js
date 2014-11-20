@@ -18,37 +18,60 @@ Ext.define('SenchaExt.Data.TreeStore', {
       options.params = options.params || {};
 
       var me = this,
-         node = options.node || me.tree.getRootNode(),
+         node = options.node || me.getRoot(),
+         proxy = me.getProxy(),
+         callback = options.callback,
+         scope = options.scope,
+         operation,
          extraLen,
          extraParams = this.extraParams,
          extraItem;
 
-      // If there is not a node it means the user hasnt defined a rootnode yet. In this case lets just
-      // create one for them.
-      if(!node){
-         node = me.setRootNode({
-            expanded : true
-         }, true);
+      // If there is not a node it means the user hasn't defined a root node yet. In this case let's just
+      // create one for them. The expanded: true will cause a load operation, so return.
+      if (!node) {
+         me.setRoot({
+            expanded: true
+         });
+         return;
       }
 
-      // Assign the ID of the Operation so that a REST proxy can create the correct URL
+      // If the node we are loading was expanded, we have to expand it after the load
+      if (node.data.expanded) {
+         node.data.loaded = false;
+
+         // Must set expanded to false otherwise the onProxyLoad->fillNode->appendChild calls will update the view.
+         // We ned to update the view in the callback below.
+         if (me.clearOnLoad) {
+            node.data.expanded = false;
+         }
+         options.callback = function() {
+
+            // If newly loaded nodes are to be added to the existing child node set, then we have to collapse
+            // first so that they get removed from the NodeStore, and the subsequent expand will reveal the
+            // newly augmented child node set.
+            if (!me.clearOnLoad) {
+               node.collapse();
+            }
+            node.expand();
+
+            // Call the original callback (if any)
+            Ext.callback(callback, scope, arguments);
+         };
+      }
+
+      // Assign the ID of the Operation so that a ServerProxy can set its idParam parameter,
+      // or a REST proxy can create the correct URL
       options.id = node.getId();
 
-      if(me.clearOnLoad){
-         if(me.clearRemovedOnLoad){
-            // clear from the removed array any nodes that were descendants of the node being reloaded so that they do not get saved on next sync.
-            me.clearRemoved(node);
-         }
-         // temporarily remove the onNodeRemove event listener so that when removeAll is called, the removed nodes do not get added to the removed array
-         //        me.tree.un('remove', me.onNodeRemove, me);
-         // remove all the nodes
-         node.removeAll(false);
-         // reattach the onNodeRemove listener
-         //      me.tree.on('remove', me.onNodeRemove, me);
-      }
-      Ext.applyIf(options, {
-         node : node
-      });
+      options = Ext.apply({
+         filters: me.getFilters().items,
+         sorters: me.getSorters().items,
+         node: options.node || node,
+         internalScope: me,
+         internalCallback: me.onProxyLoad
+      }, options);
+
       options.params[me.nodeParam] = node ? node.getId() : 'root';
       extraLen = extraParams.length;
       for(var i = 0; i < extraLen; i++) {
@@ -59,10 +82,29 @@ Ext.define('SenchaExt.Data.TreeStore', {
             options.params[extraItem] = node ? node.get(extraItem) : null;
          }
       }
-      if(node){
+      me.lastOptions = Ext.apply({}, options);
+
+      operation = proxy.createOperation('read', options);
+
+      if (me.fireEvent('beforeload', me, operation) !== false) {
+
+         // Set the loading flag early
+         // Used by onNodeRemove to NOT add the removed nodes to the removed collection
+         me.loading = true;
+         if (me.clearOnLoad) {
+            if (me.clearRemovedOnLoad) {
+               // clear from the removed array any nodes that were descendants of the node being reloaded so that they do not get saved on next sync.
+               me.clearRemoved(node);
+            }
+            // remove all the nodes
+            node.removeAll(false);
+         }
+         operation.execute();
+      }
+
+      if (me.loading && node) {
          node.set('loading', true);
       }
-      return me.superclass.superclass.load.apply(me, [options]);
    },
 
    /**
