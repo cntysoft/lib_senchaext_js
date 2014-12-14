@@ -127,18 +127,11 @@ Ext.define('SenchaExt.Data.Proxy.ApiProxy', {
       });
       request.setSync(false);
       request.setInvokeInfo(meta, this.callType);
-      invokeParams = this.invokeParamsReady(invokeParams);
+      if(Ext.isFunction(this.invokeParamsReady)){
+         invokeParams = this.invokeParamsReady(invokeParams);
+      }
       request.set(invokeParams);
       return request;
-   },
-   /**
-    * 本次API调用参数就绪
-    *
-    * @param {Object} invokeParams
-    */
-   invokeParamsReady : function(invokeParams)
-   {
-      return invokeParams;
    },
    /**
     * 进行数据请求
