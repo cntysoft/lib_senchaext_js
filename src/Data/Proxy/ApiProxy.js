@@ -303,7 +303,9 @@ Ext.define('SenchaExt.Data.Proxy.ApiProxy', {
                me.getInvokeMetaInfoItem('name') +' '+ response.msg
             );
          } else{
-            data = me.onDataReady(response.data);
+            if(Ext.isFunction(this.onDataReady)){
+               data = me.onDataReady(response.data);
+            }
             if(me.hasListeners.dataready){
                me.fireEvent('dataready', data);
             }
@@ -313,15 +315,5 @@ Ext.define('SenchaExt.Data.Proxy.ApiProxy', {
          //对调用参数清空
          me.invokeParams = {};
       });
-   },
-   /**
-    * 当数据准备好之后调用的数据的处理器
-    *
-    * @template
-    * @param {Object} data
-    */
-   onDataReady : function(data)
-   {
-      return data;
    }
 });
