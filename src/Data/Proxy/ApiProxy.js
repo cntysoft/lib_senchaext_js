@@ -303,8 +303,10 @@ Ext.define('SenchaExt.Data.Proxy.ApiProxy', {
                me.getInvokeMetaInfoItem('name') +' '+ response.msg
             );
          } else{
-            if(Ext.isFunction(this.onDataReady)){
+            if(Ext.isFunction(me.onDataReady)){
                data = me.onDataReady(response.data);
+            }else{
+               data = response.data;
             }
             if(me.hasListeners.dataready){
                me.fireEvent('dataready', data);
