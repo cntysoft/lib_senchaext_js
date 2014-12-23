@@ -1,6 +1,16 @@
+$add-button-background-image-name : 'Tab/Add';
+
+@if $theme-name == 'ext-theme-crisp' or $theme-name == 'ext-theme-neptune' {
+  $add-button-background-image-name : 'Tab/Crisp/Add';
+}
+
+@if $theme-name == 'ext-theme-crisp-touch' or $theme-name == 'ext-theme-neptune-touch' {
+  $add-button-background-image-name : 'Tab/Touch/Add';
+}
+
 .sencha-ext-tab-add-button{
-  background :  url(image-path('Tab/Add', 'png'));
-  cursor : pointer
+  background :  theme-background-image($add-button-background-image-name);
+  cursor : pointer;
 }
 .sencha-ext-tab-add-button-over{
   background-position : 0 -32px
