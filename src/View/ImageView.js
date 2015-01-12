@@ -51,5 +51,5 @@ Ext.define('SenchaExt.View.ImageView', {
       var data = this.callParent([data, index, record]);
       Ext.apply(data, this.iconInfo);
       return data;
-   },
+   }
 });
