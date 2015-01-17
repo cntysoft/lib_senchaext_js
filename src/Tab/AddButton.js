@@ -63,12 +63,10 @@ Ext.define('SenchaExt.Tab.AddButton', {
    /**
     * 清除资源
     */
-   destory : function()
+   destroy : function()
    {
       delete this.LANG_TEXT;
       this.callParent();
-      var targetEl = this.getTargetEl();
       this.mixins.langProvider.destroy.call(this);
-      targetEl.removeListener('click', this.clickHandler, this);
    }
 });
