@@ -66,6 +66,17 @@ Ext.define('SenchaExt.Mixin.MultiTabPanel', {
          this.panelExistHandler(activeTab, config);
       }
    },
+
+   gotoPrev : function()
+   {
+      this.tabPanelRef.setActiveTab(this.tabPanelRef.prevChild(this.tabPanelRef.getActiveTab()));
+   },
+
+   getCurrentActivePanel : function()
+   {
+      return this.tabPanelRef.getActiveTab();
+   },
+
    /**
     * 渲染一个新的TAB标签面板
     *
