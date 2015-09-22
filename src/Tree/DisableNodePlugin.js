@@ -11,14 +11,6 @@
  }]   
  ...
  });
- *
- * @class Ext.ux.tree.plugin.NodeDisabled
- * @extends Ext.AbstractPlugin
- * @author Phil Crawford
- * license Licensed under the terms of the Open Source <a href="http://www.gnu.org/licenses/lgpl.html">LGPL 3.0 license</a>.  Commercial use is permitted to the extent that the code/component(s) do NOT become part of another Open Source or Commercially licensed development library or toolkit without explicit permission.
- * @version 0.2 (August 10, 2011)
- * @constructor
- * @param {Object} config
  */
 Ext.define('SenchaExt.Tree.DisableNodePlugin', {
     alias : 'plugin.nodedisabled',
@@ -108,7 +100,7 @@ Ext.define('SenchaExt.Tree.DisableNodePlugin', {
         }
     },
     /**
-     * @OVERRIDES {@link Ext.tree.View#onCheckboxChange}
+     * @override {@link Ext.tree.View#onCheckboxChange}
      * @private
      * @param {Ext.EventObject} e
      * @param {Object} target

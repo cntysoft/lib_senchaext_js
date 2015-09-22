@@ -5,6 +5,9 @@
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
+/**
+ * 图标View定义，这个类主要负责显示指定大小的图标列表
+ */
 Ext.define('SenchaExt.View.ImageView', {
    extend : 'Ext.view.View',
    alias : 'widget.senchaextimageview',
