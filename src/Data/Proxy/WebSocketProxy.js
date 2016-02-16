@@ -94,7 +94,6 @@ Ext.define("SenchaExt.Data.Proxy.WebSocketProxy", {
          listeners : {
             connecterror : function(invoker, event){
                Cntysoft.raiseError(Ext.getClassName(this), "run", "connect to websocket server " + websocketUrl + " error");
-               
             },
             scope : this
          }
