@@ -167,8 +167,6 @@ Ext.define("SenchaExt.Data.Proxy.WebSocketProxy", {
       var fn = function(response){
          var data;
          if(false == response.status){
-            var errContext = response.errorInfo.context;
-            data = [];
             //这里需要探测是否是认证信息失效如果是的，那么重新引导
             //抛出异常
             //if(errContext == "Cntysoft.Framework.UserCenter.ErrorType"){
@@ -182,7 +180,7 @@ Ext.define("SenchaExt.Data.Proxy.WebSocketProxy", {
             Cntysoft.raiseError(
                Ext.getClassName(this),
                "createRequestCallback",
-               me.getInvokeMetaInfoItem("name") +" "+ response.msg
+               me.getInvokeMetaInfoItem("name") +" "+ response.errorString
             );
          } else{
             if(Ext.isFunction(me.onDataReady)){
